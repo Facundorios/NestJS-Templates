@@ -1,0 +1,14 @@
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Instalar pnpm y dependencias necesarias para desarrollo
+RUN npm install -g pnpm
+COPY . .
+
+RUN pnpm install
+
+# Instala herramientas de desarrollo necesarias
+RUN pnpm add -D ts-node tsconfig-paths nodemon
+
+CMD ["pnpm", "run", "start:dev"]

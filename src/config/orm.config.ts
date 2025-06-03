@@ -3,7 +3,7 @@ import { DataSource } from 'typeorm';
 import * as dotenv from 'dotenv';
 
 import { User } from 'src/users/entities/user.entity';
-import { Role } from 'src/auth/entities/role.entity';
+import { Role } from 'src/roles/entities/role.entity';
 import { Permission } from 'src/permissions/entities/permission.entity';
 
 dotenv.config();

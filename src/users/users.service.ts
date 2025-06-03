@@ -14,18 +14,18 @@ export class UsersService {
   //User Service is responsible for business logic and data access related to users.
   // It interacts with the User entity and performs CRUD operations on user data.
   @InjectRepository(User)
-  private readonly userRepository: Repository<User>;
+  private readonly user: Repository<User>;
 
   async findAll() {
-    return await this.userRepository.find();
+    return await this.user.find();
   }
 
   async findUserById(id: string) {
-    return await this.userRepository.findOneBy({ id });
+    return await this.user.findOneBy({ id });
   }
 
   async findUserByEmail(email: string): Promise<User | null> {
-    return await this.userRepository.findOne({
+    return await this.user.findOne({
       where: { email },
       relations: ['role'],
     });
@@ -37,24 +37,24 @@ export class UsersService {
     const existing = await this.findUserByEmail(email);
     if (existing) throw new ConflictException('Email already exists');
 
-    const user = this.userRepository.create(dto);
-    return await this.userRepository.save(user);
+    const user = this.user.create(dto);
+    return await this.user.save(user);
   }
 
   async update(id: string, updateUserDto: UpdateUserDto) {
-    return await this.userRepository.update(id, updateUserDto);
+    return await this.user.update(id, updateUserDto);
   }
 
   async remove(id: string) {
-    return await this.userRepository.delete(id);
+    return await this.user.delete(id);
   }
 
   async assignRoleToUser(userId: string, roleId: string) {
-    // const user = await this.userRepository.findOneBy({ id: userId });
+    // const user = await this.user.findOneBy({ id: userId });
     // if (!user) {
     //   throw new Error('User not found');
     // }
     // user.role.push(roleId);
-    // return await this.userRepository.save(user);
+    // return await this.user.save(user);
   }
 }

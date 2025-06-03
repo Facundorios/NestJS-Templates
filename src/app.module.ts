@@ -7,9 +7,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { typeOrmConfig } from './config/orm.config';
 import { PermissionsModule } from './permissions/permissions.module';
+import { RolesModule } from './roles/roles.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(typeOrmConfig), AuthModule, UsersModule, PermissionsModule],
+  imports: [TypeOrmModule.forRoot(typeOrmConfig), AuthModule, UsersModule, PermissionsModule, RolesModule],
   controllers: [AppController],
   providers: [AppService],
 })
